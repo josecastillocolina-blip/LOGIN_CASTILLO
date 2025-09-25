@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Contáctanos{% endblock %}
+
+{% block content %}
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .fondo-contacto {
+    background: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1920&q=80") no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .fondo-contacto::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    z-index: 0;
+  }
+
+  .contact-form {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.25);
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .contact-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .btn-accept {
+    background: #28a745;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+  }
+  .btn-accept:hover {
+    background: #218838;
+  }
+
+  .btn-cancel {
+    background: #dc3545;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+  }
+  .btn-cancel:hover {
+    background: #c82333;
+  }
+</style>
+
+<div class="fondo-contacto d-flex justify-content-center align-items-center">
+  <div class="contact-form">
+    <h2 class="contact-title">Formulario de Contacto</h2>
+
+    {% if redirigir %}
+      <div class="alert alert-success">
+        ✅ Tu mensaje fue enviado satisfactoriamente.
+      </div>
+      <script>
+        setTimeout(function(){
+          window.location.href = "{% url 'home' %}";
+        }, 3000);
+      </script>
+    {% endif %}
+
+    {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-2">
+        <label for="nombre" class="form-label">Tu Nombre:</label>
+        <input type="text" name="nombre" class="form-control" required autocomplete="off">
+      </div>
+      <div class="mb-2">
+        <label for="email" class="form-label">Tu Email:</label>
+        <input type="email" name="email" class="form-control" required autocomplete="off">
+      </div>
+      <div class="mb-2">
+        <label for="asunto" class="form-label">Asunto:</label>
+        <input type="text" name="asunto" class="form-control" required>
+      </div>
+      <div class="mb-2">
+        <label for="mensaje" class="form-label">Mensaje:</label>
+        <textarea name="mensaje" class="form-control" rows="2" required></textarea>
+      </div>
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-accept w-50">Aceptar</button>
+        <a href="{% url 'home' %}" class="btn btn-cancel w-50">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
