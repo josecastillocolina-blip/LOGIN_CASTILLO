@@ -4,6 +4,8 @@ services:
     env: python
     buildCommand: ""
     startCommand: gunicorn login_castillo.wsgi:application
-    pythonVersion: 3.11.8
     plan: free
     autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
