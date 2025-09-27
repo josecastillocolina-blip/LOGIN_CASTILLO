@@ -1,2 +1,9 @@
-build:
-  pythonVersion: 3.11.8
+services:
+  - type: web
+    name: login-castillo
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn login_castillo.wsgi:application
+    pythonVersion: 3.11.8
+    plan: free
+    autoDeploy: true
