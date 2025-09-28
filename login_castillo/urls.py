@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
+from django.views.generic import TemplateView
+from app_usuarios.views import google_verificacion
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -24,6 +27,9 @@ urlpatterns = [
 
     # 👇 Redirección: raíz (/) → login
     path("", lambda request: redirect("login")),
+    path("google59c38f56bef2f608.html", google_verificacion, name="google_verificacion"),
+
+   
 ]
 
 

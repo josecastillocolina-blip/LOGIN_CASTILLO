@@ -234,3 +234,6 @@ def password_reset_confirm(request, token):
     except PasswordResetToken.DoesNotExist:
         messages.error(request, '❌ El enlace de recuperación no es válido.')
         return redirect('password_reset_request')
+    
+    def google_verificacion(request):
+        return HttpResponse("google-site-verification: google59c38f56bef2f608.html", content_type="text/plain")
