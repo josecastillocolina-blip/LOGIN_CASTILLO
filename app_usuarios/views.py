@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.utils import timezone
 from .models import PasswordResetToken
 from .forms import PasswordResetRequestForm, PasswordResetConfirmForm
+from django.http import HttpResponse
 
 def contacto(request):
     redirigir = False
@@ -235,5 +236,5 @@ def password_reset_confirm(request, token):
         messages.error(request, '❌ El enlace de recuperación no es válido.')
         return redirect('password_reset_request')
     
-    def google_verificacion(request):
-        return HttpResponse("google-site-verification: google59c38f56bef2f608.html", content_type="text/plain")
+def google_verificacion(request):
+    return HttpResponse("google-site-verification: google59c38f56bef2f608.html", content_type="text/plain")

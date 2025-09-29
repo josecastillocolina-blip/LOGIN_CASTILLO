@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
-from app_usuarios.views import google_verificacion
+
 
 
 urlpatterns = [
@@ -27,9 +27,8 @@ urlpatterns = [
 
     # 👇 Redirección: raíz (/) → login
     path("", lambda request: redirect("login")),
-    path("google59c38f56bef2f608.html", google_verificacion, name="google_verificacion"),
-
-   
+     path("google59c38f56bef2f608.html", 
+         TemplateView.as_view(template_name="google59c38f56bef2f608.html")),
 ]
 
 
